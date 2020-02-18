@@ -13,7 +13,6 @@
         android:text="Private Note"
         android:textSize="28sp"
         android:textAllCaps="true"
-        android:textColor="@color/colorTextTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
