@@ -9,12 +9,11 @@
 
     <include
         android:id="@+id/layout_title"
-        layout="@layout/layout_tiitle"
+        layout="@layout/layout_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.18"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"

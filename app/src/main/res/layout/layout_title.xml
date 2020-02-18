@@ -8,10 +8,8 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/CustomTextStyle.White"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="Private Note"
         android:textSize="28sp"
         android:textAllCaps="true"
@@ -21,13 +19,8 @@
 
     <TextView
         android:id="@+id/tv_sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        style="@style/CustomTextStyle.White"
         android:text="나만의 이야기를 기록해보세요!"
-        android:textAllCaps="true"
-        android:textColor="@color/colorTextTitle"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
