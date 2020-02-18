@@ -18,8 +18,22 @@
     </style>
 
     <style name="CustomTextStyle.White" parent="CustomTextStyle">
-        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
         <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="CustomEditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextMain</item>
+        <item name="android:background">@drawable/round_rectangle_8dp</item>
+        <item name="android:textColorHint">@color/colorTextSub</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:layout_marginTop">4dp</item>
     </style>
 
 </resources>
