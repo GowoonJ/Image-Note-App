@@ -5,6 +5,12 @@
     <color name="colorAccent">#D81B60</color>
 
 <!--    mainColor-->
-    <color name="mainColor">#AC95DA</color>
-    <color name="subColor">#9C56FF</color>
+    <color name="colorMain">#AC95DA</color>
+    <color name="colorSub1">#9C56FF</color>
+    <color name="colorSub2">#F1A2D1</color>
+
+    <color name="colorTextMain">#475058</color>
+    <color name="colorTextSub">#838383</color>
+    <color name="colorHighlight">#2d2d2c</color>
+    <color name="colorHighlight2">#FB2F4E</color>
 </resources>
