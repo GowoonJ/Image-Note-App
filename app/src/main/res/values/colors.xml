@@ -13,4 +13,6 @@
     <color name="colorTextSub">#838383</color>
     <color name="colorHighlight">#2d2d2c</color>
     <color name="colorHighlight2">#FB2F4E</color>
+
+    <color name="colorTextTitle">#ffffff</color>
 </resources>
