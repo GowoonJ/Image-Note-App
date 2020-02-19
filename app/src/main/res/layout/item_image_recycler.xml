@@ -7,7 +7,7 @@
     android:layout_height="100dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_added"
         android:layout_width="140dp"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/close_icon"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintStart_toEndOf="@id/imageView_added"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
