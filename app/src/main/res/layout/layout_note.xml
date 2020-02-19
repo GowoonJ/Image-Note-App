@@ -22,10 +22,8 @@
 
     <TextView
         android:id="@+id/tv_note_title"
-        style="@style/CustomTextStyle"
+        style="@style/CustomTextStyle.Small"
         android:text="제목"
-        android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +39,8 @@
 
     <TextView
         android:id="@+id/tv_note_context"
-        style="@style/CustomTextStyle"
+        style="@style/CustomTextStyle.Small"
         android:text="내용"
-        android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@id/editText_title" />
@@ -73,8 +69,6 @@
         android:id="@+id/tv_note_image"
         style="@style/CustomTextStyle"
         android:text="사진"
-        android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@id/view_divider" />
@@ -83,8 +77,6 @@
         android:id="@+id/tv_note_image_add"
         style="@style/CustomTextStyle"
         android:text="* 사진 추가"
-        android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintTop_toBottomOf="@id/view_divider" />
