@@ -5,6 +5,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import lombok.Data;
+
+@Data
 @Entity(tableName = "image")
 public class ImageTable {
     @PrimaryKey(autoGenerate = true)
