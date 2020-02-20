@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class NoteData {
-    @ColumnInfo(name = "note_id")
+    @ColumnInfo(name = "id")
     public int noteId;
 
     @ColumnInfo
