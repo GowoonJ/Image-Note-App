@@ -9,13 +9,13 @@ import java.util.List;
 
 @Dao
 public interface NoteDao {
-    @Query("select * from note inner join image on note.id = image.note_id")
+    @Query("SELECT * FROM note INNER JOIN image ON note.id = image.note_id ORDER BY date DESC")
     List<NoteTable> getAll();
 
-    @Query("select * from note inner join image on note.id = image.note_id where id = :id")
+    @Query("SELECT * FROM note INNER JOIN image ON note.id = image.note_id WHERE id = :id")
     NoteTable getNoteDetail(int id);
 
-    @Query("select * from image")
+    @Query("SELECT * FROM image ORDER BY id")
     List<ImageTable> getAllImg();
 
     @Insert
@@ -28,9 +28,9 @@ public interface NoteDao {
     @Update
     void updateImg(List<ImageTable> img);
 
-    @Query("delete from note where id = :id")
-    void deleteNote(int id);
+    @Query("DELETE FROM note WHERE id = :id")
+    void DELETENote(int id);
 
-    @Query("delete from image where note_id = :id")
-    void deleteNoteImg(int id);
+    @Query("DELETE FROM image WHERE note_id = :id")
+    void DELETENoteImg(int id);
 }
