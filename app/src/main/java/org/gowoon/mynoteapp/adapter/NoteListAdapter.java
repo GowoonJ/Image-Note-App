@@ -56,7 +56,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
         }
     }
 
-    void bindingImage(int position){
+    private void bindingImage(int position){
 
     }
 }
