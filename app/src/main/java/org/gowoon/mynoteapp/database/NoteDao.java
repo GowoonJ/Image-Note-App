@@ -5,12 +5,14 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import org.gowoon.mynoteapp.model.NoteData;
+
 import java.util.List;
 
 @Dao
 public interface NoteDao {
-    @Query("SELECT * FROM note INNER JOIN image ON note.id = image.note_id ORDER BY date DESC")
-    List<NoteTable> getAll();
+    @Query("SELECT id, title, content FROM note INNER JOIN image ON note.id = image.note_id ORDER BY date DESC LIMIT 1")
+    List<NoteData> getAllNote();
 
     @Query("SELECT * FROM note INNER JOIN image ON note.id = image.note_id WHERE id = :id")
     NoteTable getNoteDetail(int id);
