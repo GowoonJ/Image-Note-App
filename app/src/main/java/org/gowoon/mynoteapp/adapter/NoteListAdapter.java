@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +13,9 @@ import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.model.NoteData;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHolder> {
     private ArrayList<NoteData> mDataList;
-
-    public NoteListAdapter(ArrayList<NoteData> dataList){
-        this.mDataList = dataList;
-    }
 
     @NonNull
     @Override
@@ -58,5 +52,10 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
 
     private void bindingImage(int position){
 
+    }
+
+    void setmDataList(ArrayList<NoteData> dataList){
+        this.mDataList = dataList;
+        notifyDataSetChanged();
     }
 }
