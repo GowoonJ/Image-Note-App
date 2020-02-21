@@ -7,20 +7,37 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.gowoon.mynoteapp.R;
+import org.gowoon.mynoteapp.custom.CustomAppBar;
 import org.gowoon.mynoteapp.databinding.LayoutNoteBinding;
 
 public class NoteActivity extends AppCompatActivity {
 
     private LayoutNoteBinding binding;
+    String title, content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.layout_note);
-
-        binding.buttonWrite.setOnClickListener(view -> getStringData());
+        setCustomAppBar();
+        binding.buttonWrite.setOnClickListener(view -> {
+            getStringData();
+        });
+        binding.tvNoteImageAdd.setOnClickListener(view -> {
+            getImage();
+        });
     }
+    private void setCustomAppBar(){
+        CustomAppBar customAppBar = new CustomAppBar(this, getSupportActionBar());
+        customAppBar.setCustomAppBar("대타 등록하기");
+        customAppBar.setBackClickListener(v -> finish());
+    }
+
     private void getStringData(){
+        title = binding.editTextTitle.getText().toString();
+        content = binding.editTextContent.getText().toString();
+    }
+    private void getImage(){
 
     }
 }
