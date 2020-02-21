@@ -29,7 +29,7 @@ public class NoteActivity extends AppCompatActivity {
     }
     private void setCustomAppBar(){
         CustomAppBar customAppBar = new CustomAppBar(this, getSupportActionBar());
-        customAppBar.setCustomAppBar("대타 등록하기");
+        customAppBar.setCustomAppBar("기록 남기기");
         customAppBar.setBackClickListener(v -> finish());
     }
 
