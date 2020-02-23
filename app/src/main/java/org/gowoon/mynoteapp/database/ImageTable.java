@@ -15,9 +15,6 @@ public class ImageTable {
 
     @ColumnInfo(name = "note_id")
     @ForeignKey(entity = NoteTable.class, parentColumns = "id", childColumns = "note_id")
-    public int noteId;
+    public long noteId;
     public String url;
-
-    @ColumnInfo(name = "is_link")
-    public Boolean isLink;
 }

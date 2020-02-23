@@ -22,9 +22,13 @@ import android.widget.Toast;
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.adapter.ImageListAdapter;
 import org.gowoon.mynoteapp.custom.CustomAppBar;
+import org.gowoon.mynoteapp.database.ImageTable;
+import org.gowoon.mynoteapp.database.NoteDB;
+import org.gowoon.mynoteapp.database.NoteTable;
 import org.gowoon.mynoteapp.databinding.LayoutBottomSheetBinding;
 import org.gowoon.mynoteapp.databinding.LayoutNoteBinding;
 import org.gowoon.mynoteapp.fragment.BottomSheetDialog;
+import org.gowoon.mynoteapp.helper.CurrentDateHelper;
 import org.gowoon.mynoteapp.model.ImageData;
 
 import java.util.ArrayList;
@@ -35,13 +39,18 @@ import gun0912.tedimagepicker.builder.listener.OnMultiSelectedListener;
 
 public class NoteActivity extends AppCompatActivity {
 
+    CurrentDateHelper dateHelper = new CurrentDateHelper();
     ImageListAdapter imageListAdapter = new ImageListAdapter();
     ArrayList<Uri> imageList = new ArrayList<>();
     int permissionCamera, permissionStorage;
+    long noteTableId;
     private static int MY_PERMISSIONS_REQUEST = 200;
     private LayoutNoteBinding binding;
     String title, content;
 
+    NoteDB noteDB;
+    NoteTable noteTable = new NoteTable();
+    ImageTable imageTable = new ImageTable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +58,11 @@ public class NoteActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.layout_note);
         getPermissionCheck();
         setCustomAppBar();
-        binding.buttonWrite.setOnClickListener(view -> getStringData());
+        binding.buttonWrite.setOnClickListener(view -> insertData());
         binding.tvNoteImageAdd.setOnClickListener(view -> getImage());
         binding.recyclerAddImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
+
+        noteDB = NoteDB.getDatabase(this);
     }
     private void setCustomAppBar(){
         CustomAppBar customAppBar = new CustomAppBar(this, getSupportActionBar());
@@ -59,9 +70,27 @@ public class NoteActivity extends AppCompatActivity {
         customAppBar.setBackClickListener(v -> finish());
     }
 
-    private void getStringData(){
+    private void insertData(){
         title = binding.editTextTitle.getText().toString();
         content = binding.editTextContent.getText().toString();
+
+        ArrayList<ImageTable> imageTables = new ArrayList<>();
+
+        new Thread(() -> {
+            noteTable.title = title;
+            noteTable.content = content;
+            noteTable.date = dateHelper.getDate();
+            noteTableId = noteDB.noteDao().insertNote(noteTable);
+
+            for (int i = 0; i < imageListAdapter.getDataList().size();i++){
+                imageTable.noteId = noteTableId;
+                imageTable.url = String.valueOf(imageListAdapter.getDataList().get(i));
+                imageTables.add(imageTable);
+            }
+            noteDB.noteDao().insertImg(imageTables);
+            finish();
+        }).start();
+        Toast.makeText(this, "기록되었습니다",Toast.LENGTH_SHORT).show();
     }
 
     private void getImage(){

@@ -11,7 +11,7 @@ import lombok.Data;
 @Entity(tableName = "note")
 public class NoteTable {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     public String title;
     public String content;
     public Date date;
