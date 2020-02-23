@@ -12,11 +12,14 @@ import java.util.List;
 
 @Dao
 public interface NoteDao {
-//    @Query("SELECT note.id, title, content FROM image INNER JOIN note ON note.id = image.note_id ORDER BY date DESC LIMIT 1")
-//    LiveData<List<NoteData>> getAllNote();
-//
-//    @Query("SELECT * FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
-//    NoteTable getNoteDetail(int id);
+    @Query("SELECT note.id, title, content, url FROM note INNER JOIN image ON note.id = image.note_id ORDER BY id DESC")
+    List<NoteData> getAllNote();
+
+    @Query("SELECT id, title, content FROM note ORDER BY date")
+    List<NoteData> getNoteList();
+
+    @Query("SELECT * FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
+    NoteTable getNoteDetail(int id);
 
     @Query("SELECT * FROM image ORDER BY id")
     List<ImageTable> getAllImg();

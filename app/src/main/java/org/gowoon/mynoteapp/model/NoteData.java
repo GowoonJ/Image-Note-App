@@ -1,5 +1,7 @@
 package org.gowoon.mynoteapp.model;
 
+import android.net.Uri;
+
 import androidx.room.ColumnInfo;
 
 import java.util.Date;
@@ -12,7 +14,7 @@ public class NoteData {
     public int noteId;
 
     @ColumnInfo
-    public Date date;
     public String title;
     public String content;
+    public String imageUri;
 }

@@ -33,4 +33,7 @@ public abstract class NoteDB extends RoomDatabase {
         }
         return INSTANCE;
     }
+    public static void destroyDatabase(){
+        INSTANCE = null;
+    }
 }
