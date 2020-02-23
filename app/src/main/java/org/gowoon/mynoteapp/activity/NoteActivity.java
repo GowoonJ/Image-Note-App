@@ -35,14 +35,13 @@ import gun0912.tedimagepicker.builder.listener.OnMultiSelectedListener;
 
 public class NoteActivity extends AppCompatActivity {
 
-    ImageListAdapter imageListAdapter;
+    ImageListAdapter imageListAdapter = new ImageListAdapter();
     ArrayList<Uri> imageList = new ArrayList<>();
     int permissionCamera, permissionStorage;
     private static int MY_PERMISSIONS_REQUEST = 200;
     private LayoutNoteBinding binding;
     String title, content;
 
-    LayoutBottomSheetBinding bindingBottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +55,7 @@ public class NoteActivity extends AppCompatActivity {
         binding.tvNoteImageAdd.setOnClickListener(view -> {
             getImage();
         });
-        binding.recyclerAddImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
-        binding.recyclerAddImage.setAdapter(imageListAdapter);
+        binding.recyclerAddImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
     }
     private void setCustomAppBar(){
         CustomAppBar customAppBar = new CustomAppBar(this, getSupportActionBar());
@@ -71,18 +69,16 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void getImage(){
-        if (permissionCamera == PackageManager.PERMISSION_GRANTED){
+        if (permissionStorage == PackageManager.PERMISSION_GRANTED){
             BottomSheetDialog selectDialog = new BottomSheetDialog();
             selectDialog.show(getSupportFragmentManager(),"select");
             selectDialog.setOnCamerraButtonClickListener(() -> {
                 Toast.makeText(this, "camera click", Toast.LENGTH_SHORT).show();
                 TedImagePicker.with(this)
-                        .startMultiImage(new OnMultiSelectedListener() {
-                            @Override
-                            public void onSelected(@NonNull List<? extends Uri> list) {
-                                imageList.addAll(list);
-                                imageListAdapter.setDataList(imageList);
-                            }
+                        .startMultiImage(list -> {
+                            imageList.addAll(list);
+                            imageListAdapter.setDataList(imageList);
+                            binding.recyclerAddImage.setAdapter(imageListAdapter);
                         });
             });
         }else{

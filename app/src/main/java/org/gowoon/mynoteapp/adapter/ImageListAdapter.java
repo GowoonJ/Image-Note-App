@@ -17,7 +17,7 @@ import org.gowoon.mynoteapp.model.ImageData;
 import java.util.ArrayList;
 
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.ViewHolder> {
-    ArrayList<Uri> mImageList;
+    ArrayList<Uri> mImageList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -47,7 +47,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
         }
     }
     public void setDataList(ArrayList<Uri> dataList){
-        this.mImageList = dataList;
+        mImageList.addAll(dataList);
         notifyDataSetChanged();
     }
 }
