@@ -55,6 +55,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
+
+    //image picker library
+    implementation 'gun0912.ted:tedimagepicker:1.0.12'
 }
 
 allprojects {
