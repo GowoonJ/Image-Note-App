@@ -10,6 +10,11 @@
         <item name="android:statusBarColor">@color/colorMain</item>
     </style>
 
+    <style name="AppTheme.CustomAppBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorAccent">@color/colorHighlight2</item>
+        <item name="android:statusBarColor">@color/colorMain</item>
+    </style>
+
     <style name="CustomTextStyle" parent="@android:style/Widget.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

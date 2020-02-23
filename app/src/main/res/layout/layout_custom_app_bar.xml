@@ -23,7 +23,7 @@
         style="@style/CustomTextStyle"
         android:layout_marginStart="12dp"
         android:textSize="20sp"
-        android:text="우리 동네 대타"
+        android:text="기록 남기기"
         app:layout_constraintHeight_percent="0.535"
         app:layout_constraintStart_toEndOf="@id/iv_back"
         app:layout_constraintTop_toTopOf="@id/iv_back"

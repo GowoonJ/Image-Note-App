@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -23,6 +25,10 @@ android {
         }
     }
     dataBinding.enabled = true
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 ext {
     roomVersion = "2.2.3"
@@ -51,6 +57,14 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
+
+    // room debug library
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    //image picker library
+    implementation 'gun0912.ted:tedimagepicker:1.0.12'
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 allprojects {
@@ -58,4 +72,7 @@ allprojects {
         google()
         jcenter()
     }
+}
+repositories {
+    mavenCentral()
 }

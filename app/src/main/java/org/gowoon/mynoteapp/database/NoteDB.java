@@ -21,7 +21,7 @@ public abstract class NoteDB extends RoomDatabase {
     private static final int NUM_OF_THREADS = 4;
     static final ExecutorService databaseWriteExcutor = Executors.newFixedThreadPool(NUM_OF_THREADS);
 
-    static NoteDB getDatabase(final Context context){
+    public static NoteDB getDatabase(final Context context){
         if (INSTANCE == null){
             synchronized (NoteDB.class){
                 if (INSTANCE == null){
