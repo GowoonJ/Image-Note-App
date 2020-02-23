@@ -12,13 +12,16 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.custom.CustomAppBar;
 import org.gowoon.mynoteapp.databinding.LayoutNoteBinding;
+import org.gowoon.mynoteapp.fragment.BottomSheetDialog;
 
 public class NoteActivity extends AppCompatActivity {
 
+    int permissionCamera, permissionStorage;
     private static int MY_PERMISSIONS_REQUEST = 200;
     private LayoutNoteBinding binding;
     String title, content;
@@ -46,14 +49,20 @@ public class NoteActivity extends AppCompatActivity {
         title = binding.editTextTitle.getText().toString();
         content = binding.editTextContent.getText().toString();
     }
-    private void getImage(){
 
+    private void getImage(){
+        if (permissionCamera == PackageManager.PERMISSION_GRANTED){
+            BottomSheetDialog selectDialog = new BottomSheetDialog();
+            selectDialog.show(getSupportFragmentManager(),"select");
+        }else{
+            Toast.makeText(this, "앱 사용권한을 확인해주세요", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void getPermissionCheck(){
         String[] permissionList = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        int permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        int permissionStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        permissionStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if(permissionCamera == PackageManager.PERMISSION_DENIED || permissionStorage == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, permissionList,MY_PERMISSIONS_REQUEST);
