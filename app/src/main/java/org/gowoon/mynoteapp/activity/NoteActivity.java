@@ -49,12 +49,8 @@ public class NoteActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.layout_note);
         getPermissionCheck();
         setCustomAppBar();
-        binding.buttonWrite.setOnClickListener(view -> {
-            getStringData();
-        });
-        binding.tvNoteImageAdd.setOnClickListener(view -> {
-            getImage();
-        });
+        binding.buttonWrite.setOnClickListener(view -> getStringData());
+        binding.tvNoteImageAdd.setOnClickListener(view -> getImage());
         binding.recyclerAddImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
     }
     private void setCustomAppBar(){
@@ -72,8 +68,9 @@ public class NoteActivity extends AppCompatActivity {
         if (permissionStorage == PackageManager.PERMISSION_GRANTED){
             BottomSheetDialog selectDialog = new BottomSheetDialog();
             selectDialog.show(getSupportFragmentManager(),"select");
-            selectDialog.setOnCamerraButtonClickListener(() -> {
-                Toast.makeText(this, "camera click", Toast.LENGTH_SHORT).show();
+            imageList.clear();
+            selectDialog.setOnCameraClickListener(() -> {
+                Toast.makeText(this, "이미지를 선택해주세요", Toast.LENGTH_SHORT).show();
                 TedImagePicker.with(this)
                         .startMultiImage(list -> {
                             imageList.addAll(list);
@@ -81,9 +78,29 @@ public class NoteActivity extends AppCompatActivity {
                             binding.recyclerAddImage.setAdapter(imageListAdapter);
                         });
             });
+            selectDialog.setOnUriClickListener(() ->{
+                Toast.makeText(this, "외부 이미지 링크를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                binding.layoutEditUri.setVisibility(View.VISIBLE);
+                binding.tvAddUri.setOnClickListener(view -> {
+                    binding.layoutEditUri.setVisibility(View.GONE);
+                    imageList.add(Uri.parse(binding.editTextUri.getText().toString()));
+                    imageListAdapter.setDataList(imageList);
+                    binding.recyclerAddImage.setAdapter(imageListAdapter);
+                    binding.editTextUri.setText("");
+                });
+            });
         }else{
             Toast.makeText(this, "앱 사용권한을 확인해주세요", Toast.LENGTH_SHORT).show();
         }
+        deleteImage();
+    }
+
+    public void deleteImage(){
+        imageListAdapter.setItemClick((view, position) -> {
+            imageListAdapter.mImageList.remove(position);
+            imageListAdapter.notifyItemRemoved(position);
+            imageListAdapter.notifyItemRangeRemoved(position, imageListAdapter.mImageList.size());
+        });
     }
 
     public void getPermissionCheck(){

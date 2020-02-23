@@ -12,12 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import org.gowoon.mynoteapp.R;
-import org.gowoon.mynoteapp.model.ImageData;
 
 import java.util.ArrayList;
 
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.ViewHolder> {
-    ArrayList<Uri> mImageList = new ArrayList<>();
+    public ArrayList<Uri> mImageList = new ArrayList<>();
+    private ItemClick itemClick;
+
+    public interface ItemClick{
+        void onClick(View view, int position);
+    }
+    public void setItemClick(ItemClick itemClick){
+        this.itemClick = itemClick;
+    }
 
     @NonNull
     @Override
@@ -30,7 +37,15 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ImageListAdapter.ViewHolder holder, int position) {
         Uri itemData = mImageList.get(position);
-        Glide.with(holder.itemView).load(itemData).into(holder.imageAdded);
+        Glide.with(holder.itemView).load(itemData)
+                .error(R.drawable.no_image_img)
+                .into(holder.imageAdded);
+
+        holder.deleteBtn.setOnClickListener(view -> {
+            if (itemClick!=null){
+                itemClick.onClick(view,position);
+            }
+        });
     }
 
     @Override
@@ -49,5 +64,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     public void setDataList(ArrayList<Uri> dataList){
         mImageList.addAll(dataList);
         notifyDataSetChanged();
+    }
+
+    public ArrayList<Uri> getDataList(){
+        return mImageList;
     }
 }
