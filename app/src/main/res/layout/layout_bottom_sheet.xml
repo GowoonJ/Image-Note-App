@@ -16,15 +16,6 @@
             app:layout_constraintStart_toEndOf="@+id/guideline_start"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_select"
-            style="@style/CustomTextStyle.Small"
-            android:layout_marginTop="16dp"
-            android:text="확인"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/button_camera"
             style="@style/CustomTextStyle"
