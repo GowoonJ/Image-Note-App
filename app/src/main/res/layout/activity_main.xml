@@ -31,6 +31,16 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.956" />
 
+        <TextView
+            android:id="@+id/tv_nothing"
+            style="@style/CustomTextStyle"
+            android:text="기록을 추가해주세요!"
+            android:layout_marginTop="24dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/layout_title"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_note_list"
             android:layout_width="0dp"

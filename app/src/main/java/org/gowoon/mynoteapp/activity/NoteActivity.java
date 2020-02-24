@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class NoteActivity extends AppCompatActivity {
     CurrentDateHelper dateHelper = new CurrentDateHelper();
     ImageListAdapter imageListAdapter = new ImageListAdapter();
     ArrayList<Uri> imageList = new ArrayList<>();
+    ArrayList<Uri> subImageList = new ArrayList<>();
     int permissionCamera, permissionStorage;
     long noteTableId;
     private static int MY_PERMISSIONS_REQUEST = 200;
@@ -49,6 +51,7 @@ public class NoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.layout_note);
+
         getPermissionCheck();
         setCustomAppBar();
         binding.buttonWrite.setOnClickListener(view -> insertData());
@@ -68,18 +71,20 @@ public class NoteActivity extends AppCompatActivity {
         content = binding.editTextContent.getText().toString();
 
         ArrayList<ImageTable> imageTables = new ArrayList<>();
+        ArrayList<Uri> imageList = imageListAdapter.getDataList();
+
+        for (int i = 0; i < imageList.size();i++){
+            imageTable.url = String.valueOf(imageList.get(i));
+            imageTables.add(imageTable);
+        }
 
         new Thread(() -> {
             noteTable.title = title;
             noteTable.content = content;
             noteTable.date = dateHelper.getDate();
-            noteTableId = noteDB.noteDao().insertNote(noteTable);
 
-            for (int i = 0; i < imageListAdapter.getDataList().size();i++){
-                imageTable.noteId = noteTableId;
-                imageTable.url = String.valueOf(imageListAdapter.getDataList().get(i));
-                imageTables.add(imageTable);
-            }
+            noteTableId = noteDB.noteDao().insertNote(noteTable);
+            imageTable.noteId = noteTableId;
             noteDB.noteDao().insertImg(imageTables);
             finish();
         }).start();
@@ -104,9 +109,9 @@ public class NoteActivity extends AppCompatActivity {
                 Toast.makeText(this, "외부 이미지 링크를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 binding.layoutEditUri.setVisibility(View.VISIBLE);
                 binding.tvAddUri.setOnClickListener(view -> {
-                    binding.layoutEditUri.setVisibility(View.GONE);
                     imageList.add(Uri.parse(binding.editTextUri.getText().toString()));
                     imageListAdapter.setDataList(imageList);
+                    binding.layoutEditUri.setVisibility(View.GONE);
                     binding.recyclerAddImage.setAdapter(imageListAdapter);
                     binding.editTextUri.setText("");
                 });

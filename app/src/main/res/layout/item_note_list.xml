@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@drawable/round_rectangle_8dp">
+    android:background="@drawable/round_rectangle_8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp">
 
     <TextView
         android:id="@+id/tv_item_title"
@@ -31,6 +33,7 @@
         android:id="@+id/tv_item_content"
         style="@style/CustomTextStyle"
         android:layout_marginTop="4dp"
+        android:maxLines="2"
         android:text="내용내용내용내용내용"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_thumbnail"
