@@ -113,10 +113,10 @@ public class EditNoteActivity extends AppCompatActivity {
         content = binding.editTextContent.getText().toString();
 
         ArrayList<ImageTable> imageTables = new ArrayList<>();
-        ArrayList<Uri> imageList = imageListAdapter.getDataList();
+        ArrayList<Uri> subImageList = imageListAdapter.getDataList();
 
-        for (int i = 0; i < imageList.size();i++){
-            imageTable.url = String.valueOf(imageList.get(i));
+        for (int i = 0; i < subImageList.size();i++){
+            imageTable.url = String.valueOf(subImageList.get(i));
             imageTable.noteId = COLUMN_ID;
             imageTables.add(imageTable);
         }
