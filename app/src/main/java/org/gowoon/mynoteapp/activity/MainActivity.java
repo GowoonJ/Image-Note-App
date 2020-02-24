@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.adapter.NoteListAdapter;
 import org.gowoon.mynoteapp.database.NoteDB;
 import org.gowoon.mynoteapp.databinding.ActivityMainBinding;
+import org.gowoon.mynoteapp.model.ImageData;
 import org.gowoon.mynoteapp.model.NoteData;
 
 import java.util.ArrayList;
@@ -51,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
     public void getNoteData(){
         new Thread(() ->{
             noteList = noteDB.noteDao().getNoteList();
-            noteList = noteList.subList(1,noteList.size());
+
+            ImageData image;
+            for (int i = 0 ; i <noteList.size(); i++){
+                image = noteDB.noteDao().getImg(noteList.get(i).noteId);
+                noteList.get(i).imageUri = Uri.parse(image.url);
+            }
             Log.w("noteList", String.valueOf(noteList.get(0)));
             noteListAdapter.setmDataList(noteList);
             noteListAdapter.notifyDataSetChanged();

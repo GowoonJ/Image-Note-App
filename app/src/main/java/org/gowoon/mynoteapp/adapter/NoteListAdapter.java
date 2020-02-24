@@ -14,11 +14,19 @@ import com.bumptech.glide.Glide;
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.model.NoteData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHolder> {
     private List<NoteData> mDataList;
+    private ItemClick itemClick;
+
+    public interface ItemClick{
+        void onClick(View view, int position);
+    }
+    public void setItemClick(ItemClick itemClick){
+        this.itemClick = itemClick;
+    }
+
 
     @NonNull
     @Override
@@ -38,7 +46,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
                 .error(R.drawable.no_image_img)
                 .into(holder.imageThumbnail);
 
-        bindingImage(position);
+        holder.itemView.setOnClickListener(view -> {
+            if (itemClick!=null){
+                itemClick.onClick(view,position);
+            }
+        });
     }
 
     @Override
@@ -55,10 +67,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
             tvContent = itemView.findViewById(R.id.tv_item_content);
             imageThumbnail = itemView.findViewById(R.id.imageView_thumbnail);
         }
-    }
-
-    private void bindingImage(int position){
-
     }
 
     public void setmDataList(List<NoteData> dataList){
