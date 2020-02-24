@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -62,11 +63,16 @@ public class MainActivity extends AppCompatActivity {
                 image = noteDB.noteDao().getImg(noteList.get(i).noteId);
                 noteList.get(i).imageUri = Uri.parse(image.url);
             }
-            Log.w("noteList", String.valueOf(noteList.get(0)));
             runOnUiThread(() -> {
-                noteListAdapter.setmDataList(noteList);
-                noteListAdapter.notifyDataSetChanged();
-                binding.recyclerNoteList.setAdapter(noteListAdapter);
+                if (noteList.size() == 0){
+                    binding.tvNothing.setVisibility(View.VISIBLE);
+                }else{
+                    binding.tvNothing.setVisibility(View.INVISIBLE);
+                    noteListAdapter.setmDataList(noteList);
+                    noteListAdapter.notifyDataSetChanged();
+                    binding.recyclerNoteList.setAdapter(noteListAdapter);
+                }
+
             });
         }).start();
     }

@@ -83,25 +83,14 @@
             android:background="@color/colorBlank"
             app:layout_constraintTop_toBottomOf="@+id/recycler_note_image" />
 
-        <!--    <TextView-->
-        <!--        style="@style/CustomTextStyle"-->
-        <!--        android:id="@+id/tv_write_date"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:text="작성 일자 : 2020-02-03"-->
-        <!--        android:layout_marginTop="8dp"-->
-        <!--        android:textSize="15sp"-->
-        <!--        app:layout_constraintEnd_toStartOf="@+id/guideline_end"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/view_divider" />-->
-
-        <TextView
-            style="@style/CustomTextStyle"
-            android:id="@+id/tv_recent_date"
-            android:text="최근 수정 일자 : 2020-02-03"
-            android:layout_marginTop="8dp"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+<!--        <TextView-->
+<!--            style="@style/CustomTextStyle"-->
+<!--            android:id="@+id/tv_recent_date"-->
+<!--            android:text="최근 수정 일자 : 2020-02-03"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:textSize="15sp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline_end"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/view_divider" />-->
 
         <TextView
             style="@style/CustomTextStyle.Small"
@@ -110,7 +99,16 @@
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toBottomOf="@+id/tv_recent_date" />
+            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+
+        <TextView
+            style="@style/CustomTextStyle.Small"
+            android:id="@+id/tv_delete"
+            android:text="* 삭제하기"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@+id/tv_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

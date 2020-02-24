@@ -143,7 +143,7 @@ public class EditNoteActivity extends AppCompatActivity {
                 TedImagePicker.with(this)
                         .startMultiImage(list -> {
                             subImageList.addAll(list);
-                            imageListAdapter.addDataList(subImageList);
+                            imageListAdapter.setDataList(subImageList);
                             binding.recyclerAddImage.setAdapter(imageListAdapter);
                         });
             });
@@ -153,7 +153,7 @@ public class EditNoteActivity extends AppCompatActivity {
                 binding.tvAddUri.setOnClickListener(view -> {
                     binding.layoutEditUri.setVisibility(View.GONE);
                     subImageList.add(Uri.parse(binding.editTextUri.getText().toString()));
-                    imageListAdapter.addDataList(subImageList);
+                    imageListAdapter.setDataList(subImageList);
                     binding.recyclerAddImage.setAdapter(imageListAdapter);
                     binding.editTextUri.setText("");
                 });

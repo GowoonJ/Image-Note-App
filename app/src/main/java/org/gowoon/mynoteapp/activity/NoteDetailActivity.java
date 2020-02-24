@@ -1,9 +1,12 @@
 package org.gowoon.mynoteapp.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +48,10 @@ public class NoteDetailActivity extends AppCompatActivity {
             startActivity(intentEdit);
             finish();
         });
+
+        binding.tvDelete.setOnClickListener(view -> {
+            setDialog();
+        });
     }
 
     private void setCustomAppBar(){
@@ -79,5 +86,27 @@ public class NoteDetailActivity extends AppCompatActivity {
         NoteDB.destroyDatabase();
         noteDB = null;
         super.onDestroy();
+    }
+
+    private void setDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("기록 삭제").setMessage("정말 삭제하실건가요?");
+
+        builder.setPositiveButton("OK", (dialog, id) ->{
+            deleteNote();
+            Toast.makeText(getApplicationContext(), "기록이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+            finish();
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, id) -> Toast.makeText(getApplicationContext(), "취소되었습니다.", Toast.LENGTH_SHORT).show());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void deleteNote(){
+        new Thread(() ->{
+            noteDB.noteDao().DeleteNote(COLUMN_ID);
+            noteDB.noteDao().DeleteNoteImg(COLUMN_ID);
+        }).start();
     }
 }
