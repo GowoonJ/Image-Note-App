@@ -6,21 +6,29 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import org.gowoon.mynoteapp.model.ImageData;
 import org.gowoon.mynoteapp.model.NoteData;
+import org.gowoon.mynoteapp.model.NoteDetailData;
 
 import java.util.List;
 
 @Dao
 public interface NoteDao {
-//    @Query("SELECT note.id, title, content FROM image INNER JOIN note ON note.id = image.note_id ORDER BY date DESC LIMIT 1")
-//    LiveData<List<NoteData>> getAllNote();
-//
-//    @Query("SELECT * FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
-//    NoteTable getNoteDetail(int id);
+//    @Query("SELECT note_id, title, content, url FROM note INNER JOIN image ON note.id = image.note_id " +
+//            "ORDER BY id DESC")
+//    List<NoteData> getAllNote();
 
-    @Query("SELECT * FROM image ORDER BY id")
-    List<ImageTable> getAllImg();
+    @Query("SELECT id, title, content FROM note ORDER BY id")
+    List<NoteData> getNoteList();
 
+    @Query("SELECT note.id, content, title FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
+    NoteDetailData getNoteDetail(int id);
+
+    @Query("SELECT url FROM image WHERE note_id = :id LIMIT 1")
+    ImageData getImg(int id);
+
+    @Query("SELECT url FROM image WHERE note_id = :id")
+    List<ImageData> getImgList(int id);
     @Insert
     long insertNote(NoteTable note);
     @Insert

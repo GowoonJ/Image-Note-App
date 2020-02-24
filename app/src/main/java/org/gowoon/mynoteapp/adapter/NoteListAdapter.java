@@ -9,13 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.model.NoteData;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHolder> {
-    private ArrayList<NoteData> mDataList;
+    public List<NoteData> mDataList;
+    private ItemClick itemClick;
+
+    public interface ItemClick{
+        void onClick(View view, int position);
+    }
+    public void setItemClick(ItemClick itemClick){
+        this.itemClick = itemClick;
+    }
+
 
     @NonNull
     @Override
@@ -31,7 +42,15 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
         holder.tvTitle.setText(currentData.getTitle());
         holder.tvContent.setText(currentData.getContent());
 
-        bindingImage(position);
+        Glide.with(holder.itemView).load(currentData.imageUri)
+                .error(R.drawable.no_image_img)
+                .into(holder.imageThumbnail);
+
+        holder.itemView.setOnClickListener(view -> {
+            if (itemClick!=null){
+                itemClick.onClick(view,position);
+            }
+        });
     }
 
     @Override
@@ -50,11 +69,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
         }
     }
 
-    private void bindingImage(int position){
-
-    }
-
-    void setmDataList(ArrayList<NoteData> dataList){
+    public void setmDataList(List<NoteData> dataList){
         this.mDataList = dataList;
         notifyDataSetChanged();
     }

@@ -1,17 +1,6 @@
 package org.gowoon.mynoteapp.activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.LayoutInflaterCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
-import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -19,23 +8,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.adapter.ImageListAdapter;
 import org.gowoon.mynoteapp.custom.CustomAppBar;
 import org.gowoon.mynoteapp.database.ImageTable;
 import org.gowoon.mynoteapp.database.NoteDB;
 import org.gowoon.mynoteapp.database.NoteTable;
-import org.gowoon.mynoteapp.databinding.LayoutBottomSheetBinding;
 import org.gowoon.mynoteapp.databinding.LayoutNoteBinding;
 import org.gowoon.mynoteapp.fragment.BottomSheetDialog;
 import org.gowoon.mynoteapp.helper.CurrentDateHelper;
-import org.gowoon.mynoteapp.model.ImageData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import gun0912.tedimagepicker.builder.TedImagePicker;
-import gun0912.tedimagepicker.builder.listener.OnMultiSelectedListener;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -45,7 +37,8 @@ public class NoteActivity extends AppCompatActivity {
     int permissionCamera, permissionStorage;
     long noteTableId;
     private static int MY_PERMISSIONS_REQUEST = 200;
-    private LayoutNoteBinding binding;
+//    private LayoutNoteBinding binding;
+    LayoutNoteBinding binding;
     String title, content;
 
     NoteDB noteDB;
