@@ -49,6 +49,7 @@ public class NoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.layout_note);
+
         getPermissionCheck();
         setCustomAppBar();
         binding.buttonWrite.setOnClickListener(view -> insertData());
@@ -74,9 +75,8 @@ public class NoteActivity extends AppCompatActivity {
             noteTable.content = content;
             noteTable.date = dateHelper.getDate();
             noteTableId = noteDB.noteDao().insertNote(noteTable);
-
+            imageTable.noteId = noteTableId;
             for (int i = 0; i < imageListAdapter.getDataList().size();i++){
-                imageTable.noteId = noteTableId;
                 imageTable.url = String.valueOf(imageListAdapter.getDataList().get(i));
                 imageTables.add(imageTable);
             }

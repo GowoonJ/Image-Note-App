@@ -1,16 +1,14 @@
 package org.gowoon.mynoteapp.activity;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.adapter.NoteListAdapter;

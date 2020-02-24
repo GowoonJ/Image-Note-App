@@ -35,7 +35,7 @@
             android:layout_margin="32dp"
             android:background="@drawable/round_rectangle_8dp"
             android:padding="16dp"
-            android:text="uri 첨부"
+            android:text="외부 링크 첨부"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"

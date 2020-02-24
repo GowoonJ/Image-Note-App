@@ -1,13 +1,13 @@
 package org.gowoon.mynoteapp.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
 
 import org.gowoon.mynoteapp.R;
 import org.gowoon.mynoteapp.adapter.DetailImageListAdapter;
@@ -15,7 +15,6 @@ import org.gowoon.mynoteapp.custom.CustomAppBar;
 import org.gowoon.mynoteapp.database.NoteDB;
 import org.gowoon.mynoteapp.databinding.LayoutNoteDetailBinding;
 import org.gowoon.mynoteapp.model.ImageData;
-import org.gowoon.mynoteapp.model.NoteData;
 import org.gowoon.mynoteapp.model.NoteDetailData;
 
 import java.util.List;
@@ -36,10 +35,16 @@ public class NoteDetailActivity extends AppCompatActivity {
         COLUMN_ID = getIntent().getIntExtra("columnId",0);
 
         setCustomAppBar();
-
         binding.recyclerNoteImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
         noteDB = NoteDB.getDatabase(this);
         getNoteData();
+
+        binding.tvEdit.setOnClickListener(view -> {
+            Intent intentEdit = new Intent(this, EditNoteActivity.class);
+            intentEdit.putExtra("postId",COLUMN_ID);
+            startActivity(intentEdit);
+            finish();
+        });
     }
 
     private void setCustomAppBar(){

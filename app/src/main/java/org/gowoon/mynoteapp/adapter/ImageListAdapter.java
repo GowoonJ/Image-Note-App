@@ -61,8 +61,13 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
             deleteBtn = itemView.findViewById(R.id.imageView_delete);
         }
     }
-    public void setDataList(ArrayList<Uri> dataList){
+    public void addDataList(ArrayList<Uri> dataList){
         mImageList.addAll(dataList);
+        notifyDataSetChanged();
+    }
+
+    public void setDataList(ArrayList<Uri> dataList){
+        this.mImageList = dataList;
         notifyDataSetChanged();
     }
 
