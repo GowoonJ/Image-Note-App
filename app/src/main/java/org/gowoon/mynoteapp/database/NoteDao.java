@@ -25,10 +25,10 @@ public interface NoteDao {
     @Query("SELECT note.id, content, title FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
     NoteDetailData getNoteDetail(int id);
 
-    @Query("SELECT url FROM image WHERE note_id = :id LIMIT 1")
+    @Query("SELECT url FROM image WHERE note_id = :id ORDER BY id LIMIT 1 ")
     ImageData getImg(int id);
 
-    @Query("SELECT url FROM image WHERE note_id = :id")
+    @Query("SELECT url FROM image WHERE note_id = :id ORDER BY id")
     List<ImageData> getImgList(int id);
     @Insert
     long insertNote(NoteTable note);

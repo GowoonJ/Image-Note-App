@@ -60,6 +60,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
         COLUMN_ID = getIntent().getIntExtra("postId",0);
 
+        binding.recyclerAddImage.setAdapter(imageListAdapter);
         noteDB = NoteDB.getDatabase(this);
         getNoteData();
 
@@ -112,19 +113,19 @@ public class EditNoteActivity extends AppCompatActivity {
         content = binding.editTextContent.getText().toString();
 
         ArrayList<ImageTable> imageTables = new ArrayList<>();
+        ArrayList<Uri> imageList = imageListAdapter.getDataList();
+
+        for (int i = 0; i < imageList.size();i++){
+            imageTable.url = String.valueOf(imageList.get(i));
+            imageTable.noteId = COLUMN_ID;
+            imageTables.add(imageTable);
+        }
 
         new Thread(() -> {
             //update noteTable
             noteDB.noteDao().updateNote(COLUMN_ID,title, content, dateHelper.getDate());
             //delete and insert imageTable
             noteDB.noteDao().DeleteNoteImg(COLUMN_ID);
-
-            ArrayList<Uri> imageList = imageListAdapter.getDataList();
-            for (int i = 0; i < imageList.size();i++){
-                imageTable.url = String.valueOf(imageList.get(i));
-                imageTable.noteId = COLUMN_ID;
-                imageTables.add(imageTable);
-            }
             noteDB.noteDao().insertImg(imageTables);
             finish();
         }).start();
