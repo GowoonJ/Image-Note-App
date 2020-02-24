@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/CustomTextStyle.Small"
+            android:layout_marginTop="16dp"
+            android:text="취소"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_camera"
+            style="@style/CustomTextStyle"
+            android:layout_width="0dp"
+            android:layout_margin="32dp"
+            android:background="@drawable/round_rectangle_8dp"
+            android:padding="16dp"
+            android:text="앨범 / 카메라"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cancel" />
+
+        <Button
+            android:id="@+id/button_uri"
+            style="@style/CustomTextStyle"
+            android:layout_width="0dp"
+            android:layout_margin="32dp"
+            android:background="@drawable/round_rectangle_8dp"
+            android:padding="16dp"
+            android:text="외부 링크 첨부"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/button_camera" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.044"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.956" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

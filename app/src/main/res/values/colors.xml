@@ -3,4 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+<!--    mainColor-->
+    <color name="colorMain">#AC95DA</color>
+    <color name="colorSub1">#7852A8</color>
+    <color name="colorSub2">#F1A2D1</color>
+
+    <color name="colorTextMain">#475058</color>
+    <color name="colorTextSub">#838383</color>
+    <color name="colorHighlight">#2d2d2c</color>
+    <color name="colorHighlight2">#FB2F4E</color>
+
+    <color name="colorTextWhite">#ffffff</color>
+    <color name="colorBlank">#f5f5f5</color>
 </resources>
