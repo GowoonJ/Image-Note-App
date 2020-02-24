@@ -17,7 +17,7 @@ import org.gowoon.mynoteapp.model.NoteData;
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHolder> {
-    private List<NoteData> mDataList;
+    public List<NoteData> mDataList;
     private ItemClick itemClick;
 
     public interface ItemClick{

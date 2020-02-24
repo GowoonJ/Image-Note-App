@@ -27,6 +27,8 @@ public interface NoteDao {
     @Query("SELECT url FROM image WHERE note_id = :id LIMIT 1")
     ImageData getImg(int id);
 
+    @Query("SELECT url FROM image WHERE note_id = :id")
+    List<ImageData> getImgList(int id);
     @Insert
     long insertNote(NoteTable note);
     @Insert

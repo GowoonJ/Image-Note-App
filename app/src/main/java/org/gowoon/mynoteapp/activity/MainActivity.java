@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -47,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getNoteData();
-
+        noteListAdapter.setItemClick((view, position) -> {
+            Intent intentDetail = new Intent(this,NoteDetailActivity.class);
+            intentDetail.putExtra("columnId", noteListAdapter.mDataList.get(position).getNoteId());
+            startActivity(intentDetail);
+        });
     }
 
     public void getNoteData(){
@@ -60,14 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 noteList.get(i).imageUri = Uri.parse(image.url);
             }
             Log.w("noteList", String.valueOf(noteList.get(0)));
-            noteListAdapter.setmDataList(noteList);
-            noteListAdapter.notifyDataSetChanged();
-            binding.recyclerNoteList.setAdapter(noteListAdapter);
+            runOnUiThread(() -> {
+                noteListAdapter.setmDataList(noteList);
+                noteListAdapter.notifyDataSetChanged();
+                binding.recyclerNoteList.setAdapter(noteListAdapter);
+            });
         }).start();
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy(){
         NoteDB.destroyDatabase();
         noteDB = null;
         super.onDestroy();
