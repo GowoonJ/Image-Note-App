@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 
 import lombok.Data;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Data
 @Entity(tableName = "image")
 public class ImageTable {
@@ -14,7 +16,7 @@ public class ImageTable {
     public int id;
 
     @ColumnInfo(name = "note_id")
-    @ForeignKey(entity = NoteTable.class, parentColumns = "id", childColumns = "note_id")
+    @ForeignKey(onDelete=CASCADE, entity = NoteTable.class, parentColumns = "id", childColumns = "note_id")
     public long noteId;
     public String url;
 }

@@ -10,6 +10,7 @@ import org.gowoon.mynoteapp.model.ImageData;
 import org.gowoon.mynoteapp.model.NoteData;
 import org.gowoon.mynoteapp.model.NoteDetailData;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -18,7 +19,7 @@ public interface NoteDao {
 //            "ORDER BY id DESC")
 //    List<NoteData> getAllNote();
 
-    @Query("SELECT id, title, content FROM note ORDER BY id")
+    @Query("SELECT id, title, content FROM note ORDER BY id DESC")
     List<NoteData> getNoteList();
 
     @Query("SELECT note.id, content, title FROM image INNER JOIN note ON note.id = image.note_id WHERE note.id = :id")
@@ -34,14 +35,14 @@ public interface NoteDao {
     @Insert
     void insertImg(List<ImageTable> img);
 
-    @Update
-    void updateNote(NoteTable note);
+    @Query("UPDATE note SET title = :title, content = :content, date = :date WHERE id = :id")
+    void updateNote(long id, String title, String content, Date date);
     @Update
     void updateImg(List<ImageTable> img);
 
     @Query("DELETE FROM note WHERE id = :id")
-    void DELETENote(int id);
+    void DeleteNote(int id);
 
     @Query("DELETE FROM image WHERE note_id = :id")
-    void DELETENoteImg(int id);
+    void DeleteNoteImg(int id);
 }

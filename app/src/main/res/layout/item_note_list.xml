@@ -31,6 +31,7 @@
         android:id="@+id/tv_item_content"
         style="@style/CustomTextStyle"
         android:layout_marginTop="4dp"
+        android:maxLines="2"
         android:text="내용내용내용내용내용"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_thumbnail"

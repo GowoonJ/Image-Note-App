@@ -53,9 +53,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
         return mImageList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageAdded, deleteBtn;
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageAdded = itemView.findViewById(R.id.imageView_added);
             deleteBtn = itemView.findViewById(R.id.imageView_delete);
